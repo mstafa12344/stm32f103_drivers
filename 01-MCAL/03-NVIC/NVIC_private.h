@@ -27,6 +27,6 @@
 
 #define  NVIC_IPR     ((volatile uint8*  ) 0x300+BSAE_ADDRESS) // arry of register of perority
 
-#define SCB_AIRCR    *((volatile uint32* )  0x0C+0xE000ED00)
+#define SCB_AIRCR    *((volatile uint32* )  (0xE000ED0C))
 
 #endif

@@ -8,7 +8,10 @@
 #include "NVIC_interface.h"
 #include "NVIC_private.h"
 #include "NVIC_config.h"
-
+void NVIC_voidInit(void)
+{
+	SCB_AIRCR = NVIC_GROUP_SUB_ID;
+}
 void NVIC_voidEnable_ExInterrupt(uint8 Copy_u8IntNumber)
 {
 	if(Copy_u8IntNumber<32)
@@ -84,12 +87,12 @@ uint8 NVIC_u8GetActiveFlag(uint8 Copy_u8IntNumber)
 	return Local_u8ReturnFlag;
 }
 
-void NVIC_voidSetPriority(sint8 Copy_s8PriorityID ,uint8 Copy_u8GroupPriority ,uint8 Copy_u8SubPriority ,uint32 Copy_u8GroupID)
+void NVIC_voidSetPriority(sint8 Copy_s8PriorityID ,uint8 Copy_u8GroupPriority,uint8 Copy_u8SupPriority)
 {
-	if(Copy_s8PriorityID>=0)
+	uint8 Local_u8ResetValue;
+	if(Copy_s8PriorityID<64)
 	{
-		uint8 Local_u8PriorityValue = Copy_u8SubPriority |(Copy_u8GroupPriority << ((Copy_u8GroupID-GROUB3)/256));
-		NVIC_IPR[Copy_s8PriorityID] = Local_u8PriorityValue<<4; // set 4 bits that control priority
-		SCB_AIRCR = Copy_u8GroupID;
+		Local_u8ResetValue = Copy_u8SupPriority|(Copy_u8GroupPriority<<((NVIC_GROUP_SUB_ID-NVIC_GROUB4_SUB0)/256));
+		NVIC_IPR[Copy_s8PriorityID]=(Local_u8ResetValue<<4);
 	}
 }

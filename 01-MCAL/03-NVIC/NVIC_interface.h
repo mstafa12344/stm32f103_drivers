@@ -9,14 +9,13 @@
 /*  all possiple groubs                       */
 /**********************************************/
 
-#define GROUB3  0x05FA0300 // 4bits for groub from IPR 
-#define GROUB4  0x05FA0400 // 3bits for groub from IPR and one bit for sub
-#define GROUB5  0x05FA0500 // 2bits for groub from IPR and 2  bits for sub
-#define GROUB6  0x05FA0600 // 1bit  for groub from IPR and 3  bits for sub
-#define GROUB7  0x05FA0700 // 4bits for sub   from IPR
+#define NVIC_GROUB4_SUB0  0x05FA0300 // 4bits for groub from IPR
+#define NVIC_GROUB3_SUB1  0x05FA0400 // 3bits for groub from IPR and one bit for sub
+#define NVIC_GROUB2_SUB2  0x05FA0500 // 2bits for groub from IPR and 2  bits for sub
+#define NVIC_GROUB1_SUB3  0x05FA0600 // 1bit  for groub from IPR and 3  bits for sub
+#define NVIC_GROUB0_SUB4  0x05FA0700 // 4bits for sub   from IPR
 
-
-
+void NVIC_voidInit(void);
 /*this function used to enable external interrupts */
 void NVIC_voidEnable_ExInterrupt(uint8 Copy_u8IntNumber);
 
@@ -33,5 +32,5 @@ void NVIC_voidSClearPendingFlag(uint8 Copy_u8IntNumber);
 uint8 NVIC_u8GetActiveFlag(uint8 Copy_u8IntNumber);
 
 /*this function used to Set priority */
-void NVIC_voidSetPriority(sint8 Copy_s8PriorityID ,uint8 Copy_u8GroupPriority ,uint8 Copy_u8SubPriority ,uint32 Copy_u8GroupID);
+void NVIC_voidSetPriority(sint8 Copy_s8PriorityID ,uint8 Copy_u8GroupPriority,uint8 Copy_u8SupPriority);
 #endif
