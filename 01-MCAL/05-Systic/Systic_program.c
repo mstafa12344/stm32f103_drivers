@@ -4,8 +4,7 @@
 /****************************************************/
 #include "STD_Types.h"
 #include "BIT_Math.h"
-#include "STD_Types.h"
-#include "BIT_Math.h"
+
 
 #include "Systic_interface.h"
 #include "Systic_config.h"
